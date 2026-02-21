@@ -12,7 +12,7 @@ export default function Hero() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
   return (
-    <section id="hero" className="min-h-[120vh] relative overflow-hidden bg-black">
+    <section id="hero" className="min-h-[120vh] relative bg-black">
       <div
         className="fixed inset-0 -z-50"
         style={{
@@ -26,7 +26,7 @@ export default function Hero() {
         }}
       />
       <div className="container mx-auto px-6 min-h-[120vh] flex items-center py-32 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 w-full items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-12 w-full items-center">
           {/* Left Column - Text Content */}
           <div className="flex flex-col gap-8">
             <motion.div
@@ -34,13 +34,19 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              <h1 className="text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-serif font-light leading-[0.85] tracking-tight">
+              <h1 className="text-[13vw] sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-serif font-light leading-[0.85] tracking-tight">
                 GRAYDON
               </h1>
-              <div className="flex items-center gap-4 lg:gap-6 mt-2">
+              <div className="flex justify-end mt-2">
                 <div className="w-20 lg:w-28 h-px bg-white/40" />
-                <h1 className="text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-serif font-light leading-[0.85] tracking-tight">
+                <h1 className="text-[13vw] sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-serif font-light leading-[0.85] tracking-tight">
                   BUTLER
+                </h1>
+              </div>
+              <div className="flex justify-end mt-2">
+                <div className="w-20 lg:w-28 h-px bg-white/40" />
+                <h1 className="text-[13vw] sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-serif font-light leading-[0.85] tracking-tight">
+                  AUDIO
                 </h1>
               </div>
             </motion.div>
@@ -54,19 +60,57 @@ export default function Hero() {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </motion.p>
           </div>
-
           {/* Right Column - Central Image */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.3 }}
-            className="h-[600px] lg:h-[700px] bg-gradient-to-br from-gray-700 via-gray-800 to-gray-900 overflow-hidden"
+            transition={{ duration: 5, delay: 0.3 }}
+            className="relative h-[300px] lg:h-[463px] overflow-hidden"
+            style={{ isolation: 'isolate' }}
           >
-            <img
-              src="/images/frog.webp"
-              alt="Audio Engineering"
-              className="w-full h-full object-cover"
-            />
+            <motion.div
+              className="relative h-full overflow-hidden"
+              animate={{ opacity: [0.6, 1, 0.6] }}
+              transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+            >
+              <canvas
+                ref={(canvas) => {
+                  if (!canvas) return;
+                  const ctx = canvas.getContext('2d');
+                  if (!ctx) return;
+                  const img = new Image();
+                  img.src = '/images/stipple_vector_trace.svg';
+                  img.onload = () => {
+                    const draw = () => {
+                      canvas.width = canvas.offsetWidth;
+                      canvas.height = canvas.offsetHeight;
+                      const imageData = ctx.createImageData(canvas.width, canvas.height);
+                      for (let i = 0; i < imageData.data.length; i += 4) {
+                        const v = Math.random() * 255;
+                        imageData.data[i] = v;
+                        imageData.data[i + 1] = v;
+                        imageData.data[i + 2] = v;
+                        imageData.data[i + 3] = 255;
+                        imageData.data[i + 3] = Math.random() > 0.4 ? 255 : 0;
+                      }
+                      ctx.putImageData(imageData, 0, 0);
+                      ctx.globalCompositeOperation = 'destination-in';
+                      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                      ctx.globalCompositeOperation = 'source-over';
+                      setTimeout(draw, 350);
+                    };
+                    draw();
+                  };
+                }}
+                className="absolute inset-0 w-full h-full"
+              />
+              <img
+                src="/images/stipple_vector_trace.svg"
+                alt="Audio Engineering"
+                className="absolute inset-0 w-full h-full object-contain"
+                style={{ mixBlendMode: 'multiply' }}
+              />
+            </motion.div>
           </motion.div>
         </div>
       </div>
