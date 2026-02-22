@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const navItems = [
   { name: 'ABOUT US', href: '#about' },
-  { name: 'COLLECTION', href: '#collection' },
+  { name: 'HIGHLIGHTS', href: '#highlights' },
   { name: 'SURFACES', href: '#surfaces' },
   { name: 'ARCHITECTURAL', href: '#architectural' },
 ];
