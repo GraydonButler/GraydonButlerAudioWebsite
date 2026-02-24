@@ -14,7 +14,7 @@ export default function Hero() {
   return (
     <section id="hero" className="min-h-[120vh] relative bg-black">
 
-
+      {/* background roots parallax */}
       <div
         className="fixed inset-0 -z-50"
         style={{
@@ -30,7 +30,7 @@ export default function Hero() {
       />
       <div className="container mx-auto px-6 min-h-[120vh] flex items-center py-32 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-12 w-full items-center">
-          {/* Left Column - Text Content */}
+          {/* Left Column - Graydon Butler Audio */}
           <div className="flex flex-col gap-8">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -53,7 +53,7 @@ export default function Hero() {
                 </h1>
               </div>
             </motion.div>
-
+            {/* quote under left */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -74,7 +74,7 @@ export default function Hero() {
             style={{ isolation: 'isolate' }}
 
           >
-
+            {/* animated frog effect */}
             <motion.div
               className="relative h-full overflow-hidden"
               animate={{ opacity: [0.6, 1, 0.6] }}
