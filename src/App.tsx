@@ -1,9 +1,10 @@
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import AboutSection from './components/AboutSection'
-import CollectionSection from './components/CollectionSection'
+//import CollectionSection from './components/CollectionSection'
 import SurfacesSection from './components/SurfacesSection'
 import ArchitecturalSection from './components/ArchitecturalSection'
+import HighlightsSection from './components/HighlightsSection'
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
       <main className="relative">
         <Hero />
         <AboutSection />
-        <CollectionSection />
+        <HighlightsSection />
         <SurfacesSection />
         <ArchitecturalSection />
       </main>

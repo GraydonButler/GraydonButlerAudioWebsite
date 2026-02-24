@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const navItems = [
   { name: 'ABOUT US', href: '#about' },
-  { name: 'COLLECTION', href: '#collection' },
+  { name: 'HIGHLIGHTS', href: '#highlights' },
   { name: 'SURFACES', href: '#surfaces' },
   { name: 'ARCHITECTURAL', href: '#architectural' },
 ];
@@ -53,7 +53,7 @@ export default function Navbar() {
             G
           </a>
           {/* All nav items */}
-          <div className="flex gap-12">
+          <div className="hidden md:flex gap-8 lg:gap-12">
             {navItems.map((item) => (
               <a
                 key={item.name}
