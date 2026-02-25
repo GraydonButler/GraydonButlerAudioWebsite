@@ -3,8 +3,9 @@ import Hero from './components/Hero'
 import AboutSection from './components/AboutSection'
 //import CollectionSection from './components/CollectionSection'
 import SurfacesSection from './components/SurfacesSection'
-import ArchitecturalSection from './components/ArchitecturalSection'
+//import ArchitecturalSection from './components/ArchitecturalSection'
 import HighlightsSection from './components/HighlightsSection'
+import ContactSection from './components/ContactSection'
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
         <AboutSection />
         <HighlightsSection />
         <SurfacesSection />
-        <ArchitecturalSection />
+        <ContactSection />
       </main>
     </div>
   )
