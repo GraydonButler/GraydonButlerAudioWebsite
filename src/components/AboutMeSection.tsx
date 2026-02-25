@@ -63,6 +63,7 @@ function AnimatedBorderImage({ src, alt }: { src: string; alt: string }) {
       <img
         src={src}
         alt={alt}
+        loading="lazy"
         className="absolute inset-0 w-full h-full object-cover rounded-lg"
       />
       {/* Vignette */}
@@ -73,6 +74,7 @@ function AnimatedBorderImage({ src, alt }: { src: string; alt: string }) {
       {/* Noise border */}
       <canvas
         ref={canvasRef}
+        aria-hidden="true"
         className="absolute inset-0 w-full h-full pointer-events-none rounded-lg"
       />
     </div>
@@ -85,7 +87,7 @@ export default function AboutSection() {
 
   return (
     <section
-      id="about"
+      id="about-me"
       ref={ref}
       className="min-h-screen flex items-center py-20 px-6 text-white"
     >

@@ -262,7 +262,7 @@ function GlobalEQ({ active }: { active: boolean }) {
     return () => cancelAnimationFrame(rafRef.current);
   }, [draw]);
 
-  return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full block" />;
+  return <canvas ref={canvasRef} aria-hidden="true" className="absolute inset-0 w-full h-full block" />;
 }
 
 // ─── Video card ───────────────────────────────────────────────────────────────
@@ -281,7 +281,6 @@ function VideoCard({
   onStop: () => void;
   isMobile: boolean;
 }) {
-  const [started, setStarted] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef(null);
@@ -315,7 +314,6 @@ function VideoCard({
     // Hide overlay via DOM directly — no state change, no re-render, no iOS loop
     if (overlayRef.current) overlayRef.current.style.display = 'none';
     if (videoRef.current) videoRef.current.style.opacity = '1';
-    setStarted(true);
     v.play();
   };
 
@@ -328,12 +326,12 @@ function VideoCard({
     const v = videoRef.current;
     if (!v || v.seeking) return;
     bus?.setActiveVideo(null);
-    if (!isMobile) onStop();
+    // Don't collapse the view on pause — let the user resume via controls.
+    // The view collapses only via the click-away backdrop or when the video ends.
   };
 
   const handleEnded = () => {
     bus?.setActiveVideo(null);
-    setStarted(false);
     // Restore overlay and hide video
     if (overlayRef.current) overlayRef.current.style.display = '';
     if (videoRef.current) videoRef.current.style.opacity = '0';
@@ -454,7 +452,7 @@ export default function HighlightsSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7 }}
-            className="relative z-10 mb-20 flex items-end justify-between border-b border-white/10 pb-8"
+            className="relative z-10 mb-20 flex flex-col md:flex-row md:items-end md:justify-between border-b border-white/10 pb-8 gap-3"
           >
             <h2 className="text-6xl md:text-7xl font-serif font-light tracking-tight">
               HIGHLIGHTS
@@ -463,7 +461,7 @@ export default function HighlightsSection() {
               href="https://www.youtube.com/@GraydonButlerAudio"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs text-gray-500 font-light tracking-widest uppercase hover:text-white transition-colors duration-200 mb-2"
+              className="text-xs text-gray-500 font-light tracking-widest uppercase hover:text-white transition-colors duration-200 md:mb-2"
             >
               My Youtube Channel →
             </a>
@@ -482,10 +480,23 @@ export default function HighlightsSection() {
                 style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 25%, transparent 75%, rgba(0,0,0,0.6) 100%)' }} />
             </div>
 
+            {/* Click-away backdrop when a video is active */}
+            {anyPlaying && !isMobile && (
+              <div
+                className="fixed inset-0 cursor-pointer"
+                style={{ zIndex: 2 }}
+                onClick={() => {
+                  const videos = document.querySelectorAll<HTMLVideoElement>('#highlights video');
+                  videos.forEach((v) => v.pause());
+                  handleStop();
+                }}
+              />
+            )}
+
             {/* Videos */}
             <div
               className="relative grid grid-cols-1 md:grid-cols-3 gap-12"
-              style={{ zIndex: 1, overflow: 'visible' }}
+              style={{ zIndex: 3, overflow: 'visible' }}
             >
               {HIGHLIGHTS.map((h, i) => (
                 <VideoCard

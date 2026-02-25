@@ -66,10 +66,10 @@ export default function AboutSection() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="grid grid-cols-2 gap-4"
         >
-          <img src="/images/bts_forest.jpg" alt="Behind the scenes" className="aspect-square object-cover rounded-lg w-full" />
-          <img src="/images/mix_board.jpg" alt="Studio session" className="aspect-square object-cover rounded-lg w-full mt-8" />
-          <img src="/images/protools_bts.jpg" alt="Pro Tools editing" className="aspect-square object-cover rounded-lg w-full -mt-8" />
-          <img src="/images/bananasquish.jpg" alt="Dialogue editing" className="aspect-square object-cover rounded-lg w-full" />
+          <img src="/images/bts_forest.jpg" alt="Behind the scenes" loading="lazy" className="aspect-square object-cover rounded-lg w-full" />
+          <img src="/images/mix_board.jpg" alt="Studio session" loading="lazy" className="aspect-square object-cover rounded-lg w-full mt-8" />
+          <img src="/images/protools_bts.jpg" alt="Pro Tools editing" loading="lazy" className="aspect-square object-cover rounded-lg w-full -mt-8" />
+          <img src="/images/bananasquish.jpg" alt="Dialogue editing" loading="lazy" className="aspect-square object-cover rounded-lg w-full" />
         </motion.div>
 
       </div>

@@ -20,22 +20,3 @@
   }
 }
 
-/* Mountain Pattern Hero Background */
-.mountain-lines {
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  object-fit: cover;
-  mix-blend-mode: luminosity;
-  opacity: 0.5;
-  pointer-events: none;
-  z-index: 5;
-}
-
-@media only screen and (min-width: 760px) {
-  .mountain-lines {
-    opacity: 0.33;
-  }
-}
