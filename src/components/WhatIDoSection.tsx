@@ -8,9 +8,9 @@ export default function AboutSection() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   const disciplines = [
-    { title: 'Field Recording', description: "Capturing sounds in the world — environments, textures, and moments that can't be synthesized." },
+    { title: 'Field Recording', description: "Capturing sounds in the world. Finding inspiring environments, textures, and and tones." },
     { title: 'Sound Design & Foley', description: 'Building immersive sonic worlds from the ground up, from individual layers to full soundscapes.' },
-    { title: 'Composition & Scoring', description: 'Writing music that serves the story — functional, emotional, and purposeful.' },
+    { title: 'Composition & Scoring', description: 'Writing music that is functional, emotional, and purposeful.' },
     { title: 'Mix & Master', description: 'Delivering a polished, professional final product across any format or platform.' },
   ];
 
@@ -35,10 +35,10 @@ export default function AboutSection() {
 
           <CornerBox padding="p-3" className="w-full max-w-md">
             <p className="text-sm text-gray-300 font-light leading-relaxed">
-              I work with clients from first conversation to final delivery — recording in the field,
-              designing sound at the computer, and crafting the mix that ties it all together.
-              Every project is built with intention, whether it's a film score, a foley session,
-              or a fully immersive soundscape.
+              I work with clients from first conversation to final delivery. Recording in the field,
+              designing sounds digitally, and tweaking the final mix to bring it all together.
+              I want to understand the projects tone, vision and intention to create sound that brings
+              any project to its full potential.
             </p>
           </CornerBox>
 

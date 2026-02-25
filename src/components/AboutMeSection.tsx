@@ -117,19 +117,17 @@ export default function AboutSection() {
 
             <CornerBox padding="p-3" className="w-full max-w-md">
               <p className="text-gray-300 text-sm leading-relaxed">
-                I'm a Vancouver-based sound designer, mixer, and composer — a recent graduate
-                of the Sound Design for Visual Media program at Vancouver Film School. I work
-                across film, games, and music, from recording sounds in the field to delivering
-                a finished mix.
+                I'm a Vancouver-based sound designer, mixer, composer, recordist and audio engineer.
+                After Graduating from the Sound Design for Visual Media program at Vancouver Film School, I work
+                across film and game media to create specially designed dialogue, sound effects, music and whatever else the project requires.
               </p>
             </CornerBox>
 
             <CornerBox padding="p-3" className="w-full max-w-md">
               <p className="text-gray-400 text-sm leading-relaxed">
-                My goal is to create audio that doesn't just support a story — it shapes how
-                audiences feel inside it. I'm drawn to interactive and adaptive sound design,
-                building music systems that respond in real time and soundscapes that make
-                worlds feel alive.
+                Audio should be styalized, original, purposeful, functional, and most of all entertaining.
+                Getting to work with others and playing to my creative and technical strengths to create something meaningful
+                is truly a gift that keeps me excited to get to work every day.
               </p>
             </CornerBox>
 
@@ -138,7 +136,7 @@ export default function AboutSection() {
                 { title: 'Film & Post Production', description: 'Sound design, re-recording, ADR/VO, and full post audio delivery.' },
                 { title: 'Game Audio', description: 'Wwise, Fmod, Unreal, Unity — asset pipelines, adaptive music systems, and implementation.' },
                 { title: 'Music', description: 'Songwriter, producer, and engineer across rock, pop, rap, EDM, jazz, and ambient.' },
-                { title: 'Tools', description: 'Pro Tools, Reaper, Ableton, RX, Serum 2, Soundtoys, Izotope, Waves.' },
+                { title: 'Tools', description: 'Reaper, Pro Tools, Ableton, Izotope RX, Serum 2, Soundtoys, Waves.' },
               ].map((item, i) => (
                 <motion.div
                   key={item.title}

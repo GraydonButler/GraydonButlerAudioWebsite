@@ -45,24 +45,24 @@ const HIGHLIGHTS: Highlight[] = [
     poster: '/images/scavengers.jpg',
     title: 'Scavengers',
     description:
-      'A brief description of the project, the artist, and the overall sonic direction you pursued together.',
-    roles: ['Recording & tracking', 'Mix engineering', 'Vocal production'],
+      'My graduation prodect after VFS. Originally mixed for a 5.1 theatre set up and a good majority of the sounds were made from scratchs',
+    roles: ['5.1 Surround Mix', 'Script Writing, ADR Casting, Dialogue Recording', 'Sound Design, Creature Foley, Music Composition'],
   },
   {
     videoSrc: '/Videos/verdant.mp4',
     poster: '/images/verdant.jpg',
     title: 'Verdant Sound Redesign',
     description:
-      'Another project description. Keep it personal — talk about what made this session unique or challenging.',
-    roles: ['Location sound recording', 'Post-production audio', 'Mastering'],
+      'A Sound Redesign for an upcoming game trailer',
+    roles: ['Sound Design, Music Composition', 'Post-production audio', 'Mastering'],
   },
   {
     videoSrc: '/Videos/actbyact.mp4',
     poster: '/images/actbyact.jpg',
     title: 'Actor Played By Actor',
     description:
-      'A third description. Mention the genre, the feel, and what you brought to the table creatively.',
-    roles: ['Sound design', 'Foley & ambience', 'Stems delivery'],
+      'A contracted indie film. I oversaw the audio from first day on set to final delivery ',
+    roles: ['On Set Sound, ADR Recording', 'Sound Design, Dialogue Edit', '5.1 Surround Mix'],
   },
 ];
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
