@@ -118,8 +118,8 @@ export default function AboutSection() {
             <CornerBox padding="p-3" className="w-full max-w-md">
               <p className="text-gray-300 text-sm leading-relaxed">
                 I'm a Vancouver-based sound designer, mixer, composer, recordist and audio engineer.
-                After Graduating from the Sound Design for Visual Media program at Vancouver Film School, I work
-                across film and game media to create specially designed dialogue, sound effects, music and whatever else the project requires.
+                After graduating from the Sound Design for Visual Media program at Vancouver Film School, I've work
+                across film and game media to create specially designed dialogue, sound effects, music and any additional audio to.
               </p>
             </CornerBox>
 
@@ -134,7 +134,7 @@ export default function AboutSection() {
             <div className="space-y-4 pt-2">
               {[
                 { title: 'Film & Post Production', description: 'Sound design, re-recording, ADR/VO, and full post audio delivery.' },
-                { title: 'Game Audio', description: 'Wwise, Fmod, Unreal, Unity, asset pipelines, adaptive music systems, and implementation.' },
+                { title: 'Game Audio', description: 'Wwise, Fmod, Unreal, Unity; asset pipelines, adaptive music systems, and implementation.' },
                 { title: 'Music', description: 'Songwriter, producer, and engineer across rock, pop, rap, EDM, jazz, and ambient.' },
                 { title: 'Tools', description: 'Reaper, Pro Tools, Ableton, Izotope RX, Serum 2, Soundtoys, Waves.' },
               ].map((item, i) => (
