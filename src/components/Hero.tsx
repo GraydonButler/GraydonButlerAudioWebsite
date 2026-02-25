@@ -65,15 +65,13 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 5, delay: 0.3 }}
-            className="relative h-[290px] lg:h-[450px] overflow-hidden"
+            className="relative h-[400px] lg:h-[600px] flex items-center justify-center"
             style={{ isolation: 'isolate' }}
-
           >
-            {/* animated frog effect */}
-            <motion.div
-              className="relative h-full overflow-hidden"
-              animate={{ opacity: [0.6, 1, 0.6] }}
-              transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+            {/* animated frog effect — locked to 1:1 aspect ratio to match the SVG */}
+            <div
+              className="relative overflow-hidden"
+              style={{ aspectRatio: '1/1', height: '100%', maxWidth: '100%' }}
             >
               <canvas
                 ref={(canvas) => {
@@ -104,7 +102,6 @@ export default function Hero() {
                     draw();
                   };
                 }}
-
                 aria-hidden="true"
                 className="absolute inset-0 w-full h-full"
               />
@@ -114,10 +111,9 @@ export default function Hero() {
                 className="absolute inset-0 w-full h-full object-contain"
                 style={{
                   mixBlendMode: 'multiply',
-                  boxShadow: 'inset 0 0 0 10px black',
                 }}
               />
-            </motion.div>
+            </div>
           </motion.div>
         </div>
       </div>
