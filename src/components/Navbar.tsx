@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const navItems = [
   { name: 'WHAT I DO', href: '#about' },
   { name: 'HIGHLIGHTS', href: '#highlights' },
-  { name: 'ABOUT ME', href: '#surfaces' },
+  { name: 'ABOUT ME', href: '#about-me' },
   { name: 'CONTACT', href: '#contact' },
 ];
 
-
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState('about');
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,8 +33,18 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close menu on resize to desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) setMenuOpen(false);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
+    setMenuOpen(false);
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -53,7 +63,8 @@ export default function Navbar() {
           <a href="#" className="text-4xl font-serif italic mr-12">
             G
           </a>
-          {/* All nav items */}
+
+          {/* Desktop nav — left aligned as before */}
           <div className="hidden md:flex gap-8 lg:gap-12">
             {navItems.map((item) => (
               <a
@@ -61,16 +72,68 @@ export default function Navbar() {
                 href={item.href}
                 onClick={(e) => scrollToSection(e, item.href)}
                 className={`text-lg font-light tracking-wider transition-colors hover:text-gray-300 ${activeSection === item.href.substring(1)
-                  ? 'text-white'
-                  : 'text-gray-400'
+                    ? 'text-white'
+                    : 'text-gray-400'
                   }`}
               >
                 {item.name}
               </a>
             ))}
           </div>
+
+          {/* Mobile hamburger */}
+          <button
+            className="md:hidden ml-auto flex flex-col gap-[5px] p-2"
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-label="Toggle menu"
+          >
+            <motion.span
+              animate={menuOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
+              className="block w-6 h-px bg-white origin-center"
+              transition={{ duration: 0.2 }}
+            />
+            <motion.span
+              animate={menuOpen ? { opacity: 0 } : { opacity: 1 }}
+              className="block w-6 h-px bg-white"
+              transition={{ duration: 0.2 }}
+            />
+            <motion.span
+              animate={menuOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
+              className="block w-6 h-px bg-white origin-center"
+              transition={{ duration: 0.2 }}
+            />
+          </button>
         </div>
       </div>
+
+      {/* Mobile dropdown */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
+            className="overflow-hidden border-t border-white/10 md:hidden"
+          >
+            <div className="flex flex-col px-6 py-4 gap-6">
+              {navItems.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  onClick={(e) => scrollToSection(e, item.href)}
+                  className={`text-sm font-light tracking-widest transition-colors ${activeSection === item.href.substring(1)
+                      ? 'text-white'
+                      : 'text-gray-400'
+                    }`}
+                >
+                  {item.name}
+                </a>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   );
 }

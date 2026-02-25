@@ -84,7 +84,7 @@ export default function AboutSection() {
 
   return (
     <section
-      id="about"
+      id="about-me"
       ref={ref}
       className="min-h-screen flex items-center py-20 px-6 text-white"
     >
