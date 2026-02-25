@@ -29,7 +29,7 @@ interface Highlight {
 const HIGHLIGHTS: Highlight[] = [
   {
     videoSrc: '/Videos/scavengers.mp4',
-    poster: '',
+    poster: '/images/scavengers.jpg',
     title: 'Scavengers',
     description:
       'A brief description of the project, the artist, and the overall sonic direction you pursued together.',
@@ -37,16 +37,16 @@ const HIGHLIGHTS: Highlight[] = [
   },
   {
     videoSrc: '/Videos/verdant.mp4',
-    poster: '',
+    poster: '/images/verdant.jpg',
     title: 'Verdant Sound Redesign',
     description:
       'Another project description. Keep it personal — talk about what made this session unique or challenging.',
     roles: ['Location sound recording', 'Post-production audio', 'Mastering'],
   },
   {
-    videoSrc: '/Videos/project-three.mp4',
-    poster: '',
-    title: 'Project Title Three',
+    videoSrc: '/Videos/actbyact.mp4',
+    poster: '/images/actbyact.jpg',
+    title: 'Actor Played By Actor',
     description:
       'A third description. Mention the genre, the feel, and what you brought to the table creatively.',
     roles: ['Sound design', 'Foley & ambience', 'Stems delivery'],
