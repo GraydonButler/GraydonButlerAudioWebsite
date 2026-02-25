@@ -326,7 +326,8 @@ function VideoCard({
     const v = videoRef.current;
     if (!v || v.seeking) return;
     bus?.setActiveVideo(null);
-    if (!isMobile) onStop();
+    // Don't collapse the view on pause — let the user resume via controls.
+    // The view collapses only via the click-away backdrop or when the video ends.
   };
 
   const handleEnded = () => {
@@ -479,10 +480,23 @@ export default function HighlightsSection() {
                 style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 25%, transparent 75%, rgba(0,0,0,0.6) 100%)' }} />
             </div>
 
+            {/* Click-away backdrop when a video is active */}
+            {anyPlaying && !isMobile && (
+              <div
+                className="fixed inset-0 cursor-pointer"
+                style={{ zIndex: 2 }}
+                onClick={() => {
+                  const videos = document.querySelectorAll<HTMLVideoElement>('#highlights video');
+                  videos.forEach((v) => v.pause());
+                  handleStop();
+                }}
+              />
+            )}
+
             {/* Videos */}
             <div
               className="relative grid grid-cols-1 md:grid-cols-3 gap-12"
-              style={{ zIndex: 1, overflow: 'visible' }}
+              style={{ zIndex: 3, overflow: 'visible' }}
             >
               {HIGHLIGHTS.map((h, i) => (
                 <VideoCard
