@@ -288,15 +288,17 @@ function VideoCard({
     onPlay(index);
   };
 
-  const handleStop = () => {
+  const handlePause = () => {
+    const v = videoRef.current;
+    if (!v || v.seeking) return;
     bus?.setActiveVideo(null);
     setPlaying(false);
     onStop();
   };
 
   const handleEnded = () => {
-    setPlaying(false);
     bus?.setActiveVideo(null);
+    setPlaying(false);
     onStop();
   };
 
@@ -338,7 +340,7 @@ function VideoCard({
           controls={playing}
           playsInline
           onPlay={handlePlay}
-          onPause={handleStop}
+          onPause={handlePause}
           onEnded={handleEnded}
           className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
           style={{ opacity: playing ? 1 : 0 }}
@@ -351,7 +353,6 @@ function VideoCard({
                 src={highlight.poster}
                 alt={highlight.title}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                style={{ opacity: 0.6 }}
               />
             )}
             <div className="absolute inset-0 bg-black/50 group-hover:bg-black/25 transition-colors duration-300" />
