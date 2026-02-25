@@ -262,7 +262,7 @@ function GlobalEQ({ active }: { active: boolean }) {
     return () => cancelAnimationFrame(rafRef.current);
   }, [draw]);
 
-  return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full block" />;
+  return <canvas ref={canvasRef} aria-hidden="true" className="absolute inset-0 w-full h-full block" />;
 }
 
 // ─── Video card ───────────────────────────────────────────────────────────────
@@ -281,7 +281,6 @@ function VideoCard({
   onStop: () => void;
   isMobile: boolean;
 }) {
-  const [started, setStarted] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef(null);
@@ -315,7 +314,6 @@ function VideoCard({
     // Hide overlay via DOM directly — no state change, no re-render, no iOS loop
     if (overlayRef.current) overlayRef.current.style.display = 'none';
     if (videoRef.current) videoRef.current.style.opacity = '1';
-    setStarted(true);
     v.play();
   };
 
@@ -333,7 +331,6 @@ function VideoCard({
 
   const handleEnded = () => {
     bus?.setActiveVideo(null);
-    setStarted(false);
     // Restore overlay and hide video
     if (overlayRef.current) overlayRef.current.style.display = '';
     if (videoRef.current) videoRef.current.style.opacity = '0';

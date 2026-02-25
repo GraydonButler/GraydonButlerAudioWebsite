@@ -2,8 +2,6 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import AboutMeSection from './components/AboutMeSection'
 import WhatIDoSection from './components/WhatIDoSection'
-//import SurfacesSection from './components/SurfacesSection'
-//import ArchitecturalSection from './components/ArchitecturalSection'
 import HighlightsSection from './components/HighlightsSection'
 import ContactSection from './components/ContactSection'
 
