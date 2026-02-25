@@ -1,8 +1,8 @@
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import AboutSection from './components/AboutSection'
-//import CollectionSection from './components/CollectionSection'
-import SurfacesSection from './components/SurfacesSection'
+import AboutMeSection from './components/AboutMeSection'
+import WhatIDoSection from './components/WhatIDoSection'
+//import SurfacesSection from './components/SurfacesSection'
 //import ArchitecturalSection from './components/ArchitecturalSection'
 import HighlightsSection from './components/HighlightsSection'
 import ContactSection from './components/ContactSection'
@@ -13,9 +13,9 @@ function App() {
       <Navbar />
       <main className="relative">
         <Hero />
-        <AboutSection />
+        <WhatIDoSection />
         <HighlightsSection />
-        <SurfacesSection />
+        <AboutMeSection />
         <ContactSection />
       </main>
     </div>

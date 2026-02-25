@@ -2,11 +2,12 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const navItems = [
-  { name: 'ABOUT US', href: '#about' },
+  { name: 'WHAT I DO', href: '#about' },
   { name: 'HIGHLIGHTS', href: '#highlights' },
-  { name: 'SURFACES', href: '#surfaces' },
-  { name: 'ARCHITECTURAL', href: '#architectural' },
+  { name: 'ABOUT ME', href: '#surfaces' },
+  { name: 'CONTACT', href: '#contact' },
 ];
+
 
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState('about');
