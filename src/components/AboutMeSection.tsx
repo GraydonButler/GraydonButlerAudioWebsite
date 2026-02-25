@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useEffect } from 'react';
+import CornerBox from './CornerBox';
 
 function AnimatedBorderImage({ src, alt }: { src: string; alt: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -84,7 +85,7 @@ export default function AboutSection() {
 
   return (
     <section
-      id="about-me"
+      id="about"
       ref={ref}
       className="min-h-screen flex items-center py-20 px-6 text-white"
     >
@@ -112,19 +113,23 @@ export default function AboutSection() {
               ABOUT ME
             </h2>
 
-            <p className="text-gray-300 text-sm leading-relaxed max-w-md">
-              I'm a Vancouver-based sound designer, mixer, and composer — a recent graduate
-              of the Sound Design for Visual Media program at Vancouver Film School. I work
-              across film, games, and music, from recording sounds in the field to delivering
-              a finished mix.
-            </p>
+            <CornerBox padding="p-3" className="w-full max-w-md">
+              <p className="text-gray-300 text-sm leading-relaxed">
+                I'm a Vancouver-based sound designer, mixer, and composer — a recent graduate
+                of the Sound Design for Visual Media program at Vancouver Film School. I work
+                across film, games, and music, from recording sounds in the field to delivering
+                a finished mix.
+              </p>
+            </CornerBox>
 
-            <p className="text-gray-400 text-sm leading-relaxed max-w-md">
-              My goal is to create audio that doesn't just support a story — it shapes how
-              audiences feel inside it. I'm drawn to interactive and adaptive sound design,
-              building music systems that respond in real time and soundscapes that make
-              worlds feel alive.
-            </p>
+            <CornerBox padding="p-3" className="w-full max-w-md">
+              <p className="text-gray-400 text-sm leading-relaxed">
+                My goal is to create audio that doesn't just support a story — it shapes how
+                audiences feel inside it. I'm drawn to interactive and adaptive sound design,
+                building music systems that respond in real time and soundscapes that make
+                worlds feel alive.
+              </p>
+            </CornerBox>
 
             <div className="space-y-4 pt-2">
               {[
@@ -138,10 +143,12 @@ export default function AboutSection() {
                   initial={{ opacity: 0, y: 16 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
-                  className="border-l border-white/20 pl-4"
+                  className="border-l-0 pl-0"
                 >
-                  <h3 className="text-sm font-serif tracking-wide mb-1">{item.title}</h3>
-                  <p className="text-xs text-gray-400 font-light leading-relaxed">{item.description}</p>
+                  <CornerBox padding="p-3 pl-4" className="w-full">
+                    <h3 className="text-sm font-serif tracking-wide mb-1">{item.title}</h3>
+                    <p className="text-xs text-gray-400 font-light leading-relaxed">{item.description}</p>
+                  </CornerBox>
                 </motion.div>
               ))}
             </div>

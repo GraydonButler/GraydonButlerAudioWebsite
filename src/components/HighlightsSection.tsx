@@ -14,6 +14,19 @@
 
 import { useState, useRef, useEffect, useCallback, useContext, createContext } from 'react';
 import { motion, useInView } from 'framer-motion';
+import CornerBox from './CornerBox';
+
+// ─── Hook: detect mobile breakpoint ──────────────────────────────────────────
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+  return isMobile;
+}
 
 interface Highlight {
   videoSrc: string;
@@ -259,15 +272,18 @@ function VideoCard({
   activeIndex,
   onPlay,
   onStop,
+  isMobile,
 }: {
   highlight: Highlight;
   index: number;
   activeIndex: number | null;
   onPlay: (index: number) => void;
   onStop: () => void;
+  isMobile: boolean;
 }) {
-  const [playing, setPlaying] = useState(false);
+  const [started, setStarted] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef(null);
   const isInView = useInView(cardRef, { once: true, margin: '-80px' });
   const bus = useContext(AudioBusCtx);
@@ -275,47 +291,60 @@ function VideoCard({
   const isActive = activeIndex === index;
   const isHidden = activeIndex !== null && !isActive;
 
+  const getAnimate = () => {
+    const base = {
+      opacity: isInView ? (isHidden ? 0 : 1) : 0,
+      y: isInView ? 0 : 40,
+    };
+    if (isMobile) return { ...base, scale: 1, x: '0%' };
+    return {
+      ...base,
+      scale: isActive ? 1.5 : 1,
+      x: isActive
+        ? index === 0 ? '55%'
+          : index === 2 ? '-55%'
+            : '0%'
+        : '0%',
+    };
+  };
+
   const handlePlayClick = () => {
     const v = videoRef.current;
     if (!v) return;
     bus?.registerVideo(v);
-    setPlaying(true);
+    // Hide overlay via DOM directly — no state change, no re-render, no iOS loop
+    if (overlayRef.current) overlayRef.current.style.display = 'none';
+    if (videoRef.current) videoRef.current.style.opacity = '1';
+    setStarted(true);
     v.play();
   };
 
   const handlePlay = () => {
     bus?.setActiveVideo(videoRef.current);
-    onPlay(index);
+    if (!isMobile) onPlay(index);
   };
 
   const handlePause = () => {
     const v = videoRef.current;
     if (!v || v.seeking) return;
     bus?.setActiveVideo(null);
-    setPlaying(false);
-    onStop();
+    if (!isMobile) onStop();
   };
 
   const handleEnded = () => {
     bus?.setActiveVideo(null);
-    setPlaying(false);
-    onStop();
+    setStarted(false);
+    // Restore overlay and hide video
+    if (overlayRef.current) overlayRef.current.style.display = '';
+    if (videoRef.current) videoRef.current.style.opacity = '0';
+    if (!isMobile) onStop();
   };
 
   return (
     <motion.div
       ref={cardRef}
       initial={{ opacity: 0, y: 40 }}
-      animate={{
-        opacity: isInView ? (isHidden ? 0 : 1) : 0,
-        y: isInView ? 0 : 40,
-        scale: isActive ? 1.5 : 1,
-        x: isActive
-          ? index === 0 ? '55%'
-            : index === 2 ? '-55%'
-              : '0%'
-          : '0%',
-      }}
+      animate={getAnimate()}
       transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
       style={{
         pointerEvents: isHidden ? 'none' : 'auto',
@@ -337,62 +366,63 @@ function VideoCard({
           ref={videoRef}
           src={highlight.videoSrc}
           poster={highlight.poster || undefined}
-          controls={playing}
+          controls
           playsInline
           onPlay={handlePlay}
           onPause={handlePause}
           onEnded={handleEnded}
           className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
-          style={{ opacity: playing ? 1 : 0 }}
+          style={{ opacity: 0 }}
         />
 
-        {!playing && (
-          <div className="absolute inset-0">
-            {highlight.poster && (
-              <img
-                src={highlight.poster}
-                alt={highlight.title}
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-              />
-            )}
-            <div className="absolute inset-0 bg-black/50 group-hover:bg-black/25 transition-colors duration-300" />
-            <button
-              onClick={handlePlayClick}
-              className="absolute inset-0 flex items-center justify-center"
-              aria-label={`Play ${highlight.title}`}
+        {/* Overlay — always in DOM, hidden via display:none after play starts */}
+        <div ref={overlayRef} className="absolute inset-0">
+          {highlight.poster && (
+            <img
+              src={highlight.poster}
+              alt={highlight.title}
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+            />
+          )}
+          <div className="absolute inset-0 bg-black/50 group-hover:bg-black/25 transition-colors duration-300" />
+          <button
+            onClick={handlePlayClick}
+            className="absolute inset-0 flex items-center justify-center"
+            aria-label={`Play ${highlight.title}`}
+          >
+            <motion.div
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              className="w-16 h-16 rounded-full border border-white/60 flex items-center justify-center backdrop-blur-sm bg-black/20"
             >
-              <motion.div
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                className="w-16 h-16 rounded-full border border-white/60 flex items-center justify-center backdrop-blur-sm bg-black/20"
-              >
-                <svg className="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </motion.div>
-            </button>
-          </div>
-        )}
+              <svg className="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </motion.div>
+          </button>
+        </div>
       </div>
 
       {/* Meta */}
-      <div className="flex items-start gap-4">
-        <span className="text-xs text-white/70 font-mono mt-1 shrink-0">
-          {String(index + 1).padStart(2, '0')}
-        </span>
-        <h3 className="text-xl font-serif font-light tracking-wide text-white leading-tight">
-          {highlight.title}
-        </h3>
-      </div>
-      <p className="text-sm text-white/70 font-light leading-relaxed pl-8">{highlight.description}</p>
-      <ul className="pl-8 space-y-1">
-        {highlight.roles.map((role) => (
-          <li key={role} className="flex items-center gap-2 text-xs text-white/70 font-light">
-            <span className="w-3 h-px bg-white/30 shrink-0" />
-            {role}
-          </li>
-        ))}
-      </ul>
+      <CornerBox padding="p-3" className="w-full">
+        <div className="flex items-start gap-4 mb-3">
+          <span className="text-xs text-white/70 font-mono mt-1 shrink-0">
+            {String(index + 1).padStart(2, '0')}
+          </span>
+          <h3 className="text-xl font-serif font-light tracking-wide text-white leading-tight">
+            {highlight.title}
+          </h3>
+        </div>
+        <p className="text-sm text-white/70 font-light leading-relaxed pl-8 mb-3">{highlight.description}</p>
+        <ul className="pl-8 space-y-1">
+          {highlight.roles.map((role) => (
+            <li key={role} className="flex items-center gap-2 text-xs text-white/70 font-light">
+              <span className="w-3 h-px bg-white/30 shrink-0" />
+              {role}
+            </li>
+          ))}
+        </ul>
+      </CornerBox>
     </motion.div>
   );
 }
@@ -403,6 +433,7 @@ export default function HighlightsSection() {
   const isInView = useInView(headingRef, { once: true });
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const anyPlaying = activeIndex !== null;
+  const isMobile = useIsMobile();
 
   const handlePlay = useCallback((index: number) => {
     setActiveIndex(index);
@@ -423,7 +454,7 @@ export default function HighlightsSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7 }}
-            className="mb-20 flex items-end justify-between border-b border-white/10 pb-8"
+            className="relative z-10 mb-20 flex items-end justify-between border-b border-white/10 pb-8"
           >
             <h2 className="text-6xl md:text-7xl font-serif font-light tracking-tight">
               HIGHLIGHTS
@@ -444,11 +475,11 @@ export default function HighlightsSection() {
             {/* Full-width EQ */}
             <div
               className="absolute pointer-events-none overflow-hidden"
-              style={{ top: '-15%', bottom: 0, left: 'calc(-50vw + 50%)', right: 'calc(-50vw + 50%)', zIndex: 0 }}
+              style={{ top: 0, bottom: 0, left: 'calc(-50vw + 50%)', right: 'calc(-50vw + 50%)', zIndex: 0 }}
             >
               <GlobalEQ active={anyPlaying} />
               <div className="absolute inset-0 pointer-events-none"
-                style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.88) 0%, transparent 20%, transparent 80%, rgba(0,0,0,0.88) 100%)' }} />
+                style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 25%, transparent 75%, rgba(0,0,0,0.6) 100%)' }} />
             </div>
 
             {/* Videos */}
@@ -464,6 +495,7 @@ export default function HighlightsSection() {
                   activeIndex={activeIndex}
                   onPlay={handlePlay}
                   onStop={handleStop}
+                  isMobile={isMobile}
                 />
               ))}
             </div>
