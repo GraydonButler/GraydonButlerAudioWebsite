@@ -452,7 +452,7 @@ export default function HighlightsSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7 }}
-            className="relative z-10 mb-20 flex items-end justify-between border-b border-white/10 pb-8"
+            className="relative z-10 mb-20 flex flex-col md:flex-row md:items-end md:justify-between border-b border-white/10 pb-8 gap-3"
           >
             <h2 className="text-6xl md:text-7xl font-serif font-light tracking-tight">
               HIGHLIGHTS
@@ -461,7 +461,7 @@ export default function HighlightsSection() {
               href="https://www.youtube.com/@GraydonButlerAudio"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs text-gray-500 font-light tracking-widest uppercase hover:text-white transition-colors duration-200 mb-2"
+              className="text-xs text-gray-500 font-light tracking-widest uppercase hover:text-white transition-colors duration-200 md:mb-2"
             >
               My Youtube Channel →
             </a>
