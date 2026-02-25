@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <style>
+      .mountain-path { fill: #ffffff; opacity: 0.15; }
+    </style>
+  </defs>
+  <path class="mountain-path" d="M0,600 L200,400 L400,500 L600,300 L800,450 L1000,250 L1200,400 L1400,350 L1600,500 L1800,300 L1920,450 L1920,1080 L0,1080 Z"/>
+  <path class="mountain-path" d="M0,700 L150,550 L350,650 L550,500 L750,600 L950,450 L1150,550 L1350,500 L1550,650 L1750,500 L1920,600 L1920,1080 L0,1080 Z" style="opacity: 0.1"/>
+  <path class="mountain-path" d="M0,800 L250,650 L450,750 L650,600 L850,700 L1050,600 L1250,700 L1450,650 L1650,750 L1850,650 L1920,750 L1920,1080 L0,1080 Z" style="opacity: 0.08"/>
+</svg>
