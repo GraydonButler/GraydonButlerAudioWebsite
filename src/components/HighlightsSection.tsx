@@ -414,7 +414,7 @@ export default function HighlightsSection() {
 
   return (
     <AudioBusProvider>
-      <section id="highlights" className="py-28 px-6 bg-black text-white" style={{ overflow: 'visible' }}>
+      <section id="highlights" className="py-28 px-6 bg-black text-white" style={{ overflow: 'visible', isolation: 'isolate' }}>
         <div className="container mx-auto max-w-6xl">
 
           {/* Heading */}
@@ -443,8 +443,8 @@ export default function HighlightsSection() {
 
             {/* Full-width EQ */}
             <div
-              className="absolute pointer-events-none"
-              style={{ inset: '-15% calc(-50vw + 50%)', zIndex: 0 }}
+              className="absolute pointer-events-none overflow-hidden"
+              style={{ top: '-15%', bottom: 0, left: 'calc(-50vw + 50%)', right: 'calc(-50vw + 50%)', zIndex: 0 }}
             >
               <GlobalEQ active={anyPlaying} />
               <div className="absolute inset-0 pointer-events-none"
