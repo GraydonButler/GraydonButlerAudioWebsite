@@ -67,9 +67,21 @@ export default function AboutSection() {
             alt="Behind the scenes"
             className="aspect-square object-cover rounded-lg w-full"
           />
-          <div className="aspect-square bg-gradient-to-br from-gray-800 to-black rounded-lg mt-8" />
-          <div className="aspect-square bg-gradient-to-br from-gray-600 to-gray-800 rounded-lg -mt-8" />
-          <div className="aspect-square bg-gradient-to-br from-gray-900 to-black rounded-lg" />
+          <img
+            src="/images/mix_board.jpg"
+            alt="Studio session"
+            className="aspect-square object-cover rounded-lg w-full mt-8"
+          />
+          <img
+            src="/images/protools_bts.jpg"
+            alt="Pro Tools editing"
+            className="aspect-square object-cover rounded-lg w-full -mt-8"
+          />
+          <img
+            src="/images/bananasquish.jpg"
+            alt="Dialogue editing"
+            className="aspect-square object-cover rounded-lg w-full"
+          />
         </motion.div>
 
       </div>
