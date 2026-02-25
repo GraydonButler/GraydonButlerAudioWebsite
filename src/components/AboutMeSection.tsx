@@ -134,7 +134,7 @@ export default function AboutSection() {
             <div className="space-y-4 pt-2">
               {[
                 { title: 'Film & Post Production', description: 'Sound design, re-recording, ADR/VO, and full post audio delivery.' },
-                { title: 'Game Audio', description: 'Asset pipelines, adaptive music systems, and implementation in Wwise, Fmod, Unreal, and Unity' },
+                { title: 'Game Audio', description: 'Asset pipeline python tools, adaptive music systems, and implementation in Wwise, Fmod, Unreal, and Unity' },
                 { title: 'Music', description: 'Songwriter, producer, and engineer across rock, pop, rap, EDM, jazz, and ambient.' },
                 { title: 'Tools', description: 'Reaper, Pro Tools, Ableton, Izotope RX, Serum 2, Soundtoys, Waves.' },
               ].map((item, i) => (
