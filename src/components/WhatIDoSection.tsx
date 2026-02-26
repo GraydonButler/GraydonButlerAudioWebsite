@@ -37,7 +37,7 @@ export default function AboutSection() {
             <p className="text-sm text-gray-300 font-light leading-relaxed">
               I work with clients from first conversation to final delivery. Recording in the field,
               designing sounds digitally, and tweaking the final mix to bring it all together.
-              I want to understand the projects tone, vision and intention to create sound that brings
+              I want to understand the project's tone, vision and intention to create sound that brings
               any project to its full potential.
             </p>
           </CornerBox>

@@ -118,14 +118,14 @@ export default function AboutSection() {
             <CornerBox padding="p-3" className="w-full max-w-md">
               <p className="text-gray-300 text-sm leading-relaxed">
                 I'm a Vancouver-based sound designer, mixer, composer, recordist and audio engineer.
-                After graduating from the Sound Design for Visual Media program at Vancouver Film School, I've work
-                across film and game media to create specially designed dialogue, sound effects, music and any additional audio to.
+                After graduating from the Sound Design for Visual Media program at Vancouver Film School, I've worked
+                across film and game media to create specially designed dialogue, sound effects, music and any additional audio required.
               </p>
             </CornerBox>
 
             <CornerBox padding="p-3" className="w-full max-w-md">
               <p className="text-gray-400 text-sm leading-relaxed">
-                Audio should be styalized, original, purposeful, functional, and most of all entertaining.
+                Audio should be stylized, original, purposeful, functional, and most of all entertaining.
                 Getting to work with others and playing to my creative and technical strengths to create something meaningful
                 is truly a gift that keeps me excited to get to work every day.
               </p>
