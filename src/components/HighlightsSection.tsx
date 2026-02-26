@@ -45,24 +45,24 @@ const HIGHLIGHTS: Highlight[] = [
     poster: '/images/scavengers.jpg',
     title: 'Scavengers',
     description:
-      'My graduation prodect after VFS. Originally mixed for a 5.1 theatre set up and a good majority of the sounds were made from scratchs',
-    roles: ['5.1 Surround Mix', 'Script Writing, ADR Casting, Dialogue Recording', 'Sound Design, Creature Foley, Music Composition'],
+      'A brief description of the project, the artist, and the overall sonic direction you pursued together.',
+    roles: ['Recording & tracking', 'Mix engineering', 'Vocal production'],
   },
   {
     videoSrc: '/Videos/verdant.mp4',
     poster: '/images/verdant.jpg',
     title: 'Verdant Sound Redesign',
     description:
-      'A Sound Redesign for an upcoming game trailer',
-    roles: ['Sound Design, Music Composition', 'Post-production audio', 'Mastering'],
+      'Another project description. Keep it personal — talk about what made this session unique or challenging.',
+    roles: ['Location sound recording', 'Post-production audio', 'Mastering'],
   },
   {
     videoSrc: '/Videos/actbyact.mp4',
     poster: '/images/actbyact.jpg',
     title: 'Actor Played By Actor',
     description:
-      'A contracted indie film. I oversaw the audio from first day on set to final delivery ',
-    roles: ['On Set Sound, ADR Recording', 'Sound Design, Dialogue Edit', '5.1 Surround Mix'],
+      'A third description. Mention the genre, the feel, and what you brought to the table creatively.',
+    roles: ['Sound design', 'Foley & ambience', 'Stems delivery'],
   },
 ];
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -262,7 +262,7 @@ function GlobalEQ({ active }: { active: boolean }) {
     return () => cancelAnimationFrame(rafRef.current);
   }, [draw]);
 
-  return <canvas ref={canvasRef} aria-hidden="true" className="absolute inset-0 w-full h-full block" />;
+  return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full block" />;
 }
 
 // ─── Video card ───────────────────────────────────────────────────────────────
@@ -307,13 +307,21 @@ function VideoCard({
     };
   };
 
+  const showOverlay = () => {
+    if (overlayRef.current) overlayRef.current.style.display = '';
+    if (videoRef.current) videoRef.current.style.opacity = '0';
+  };
+
+  const hideOverlay = () => {
+    if (overlayRef.current) overlayRef.current.style.display = 'none';
+    if (videoRef.current) videoRef.current.style.opacity = '1';
+  };
+
   const handlePlayClick = () => {
     const v = videoRef.current;
     if (!v) return;
     bus?.registerVideo(v);
-    // Hide overlay via DOM directly — no state change, no re-render, no iOS loop
-    if (overlayRef.current) overlayRef.current.style.display = 'none';
-    if (videoRef.current) videoRef.current.style.opacity = '1';
+    hideOverlay();
     v.play();
   };
 
@@ -326,16 +334,14 @@ function VideoCard({
     const v = videoRef.current;
     if (!v || v.seeking) return;
     bus?.setActiveVideo(null);
-    // Don't collapse the view on pause — let the user resume via controls.
-    // The view collapses only via the click-away backdrop or when the video ends.
+    showOverlay();
+    onStop();
   };
 
   const handleEnded = () => {
     bus?.setActiveVideo(null);
-    // Restore overlay and hide video
-    if (overlayRef.current) overlayRef.current.style.display = '';
-    if (videoRef.current) videoRef.current.style.opacity = '0';
-    if (!isMobile) onStop();
+    showOverlay();
+    onStop();
   };
 
   return (
@@ -355,10 +361,7 @@ function VideoCard({
       {/* Video frame */}
       <div
         className="relative w-full overflow-hidden group cursor-pointer"
-        style={{
-          background: 'transparent',
-          aspectRatio: '16/9',
-        }}
+        style={{ aspectRatio: '16/9' }}
       >
         <video
           ref={videoRef}
@@ -373,7 +376,7 @@ function VideoCard({
           style={{ opacity: 0 }}
         />
 
-        {/* Overlay — always in DOM, hidden via display:none after play starts */}
+        {/* Overlay — always in DOM, hidden via display:none after play */}
         <div ref={overlayRef} className="absolute inset-0">
           {highlight.poster && (
             <img
@@ -480,23 +483,10 @@ export default function HighlightsSection() {
                 style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 25%, transparent 75%, rgba(0,0,0,0.6) 100%)' }} />
             </div>
 
-            {/* Click-away backdrop when a video is active */}
-            {anyPlaying && !isMobile && (
-              <div
-                className="fixed inset-0 cursor-pointer"
-                style={{ zIndex: 2 }}
-                onClick={() => {
-                  const videos = document.querySelectorAll<HTMLVideoElement>('#highlights video');
-                  videos.forEach((v) => v.pause());
-                  handleStop();
-                }}
-              />
-            )}
-
             {/* Videos */}
             <div
               className="relative grid grid-cols-1 md:grid-cols-3 gap-12"
-              style={{ zIndex: 3, overflow: 'visible' }}
+              style={{ zIndex: 1, overflow: 'visible' }}
             >
               {HIGHLIGHTS.map((h, i) => (
                 <VideoCard
