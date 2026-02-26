@@ -23,8 +23,8 @@ export default function Hero() {
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           y: backgroundY,
-          filter: 'brightness(0) invert(1) contrast(120%)',
-          mixBlendMode: 'soft-light',
+          filter: 'brightness(0) invert(1)',
+          opacity: 0.12,
         }}
       />
       <div className="container mx-auto px-6 min-h-[120vh] flex items-center py-32 relative z-10">
