@@ -4,7 +4,7 @@ import AboutMeSection from './components/AboutMeSection'
 import WhatIDoSection from './components/WhatIDoSection'
 import HighlightsSection from './components/HighlightsSection'
 import ContactSection from './components/ContactSection'
-
+import ProjectsSection from './components/FilmsSection'
 function App() {
   return (
     <div className="relative">
@@ -13,6 +13,7 @@ function App() {
         <Hero />
         <WhatIDoSection />
         <HighlightsSection />
+        <ProjectsSection />
         <AboutMeSection />
         <ContactSection />
       </main>

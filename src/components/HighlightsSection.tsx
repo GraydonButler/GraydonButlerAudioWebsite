@@ -45,7 +45,7 @@ const HIGHLIGHTS: Highlight[] = [
     poster: '/images/scavengers.jpg',
     title: 'Scavengers',
     description:
-      'My final graduation project at VFS. Originally mixed for 5.1 and majority of the sound design created from scratch',
+      'My final graduation project at VFS. Originally mixed for 5.1 and majority of the sound design created from scratch.',
     roles: ['Script writing, ADR recording', 'Sound design, creature foley, audio editing', '5.1 Mix'],
   },
   {
@@ -53,7 +53,7 @@ const HIGHLIGHTS: Highlight[] = [
     poster: '/images/verdant.jpg',
     title: 'Verdant Sound Redesign',
     description:
-      'A sound redesign for an upcoming game trailer, "verdant". Music and sound tone work together to create the story',
+      'A sound redesign for an upcoming game trailer, "verdant". Music and sound tone work together to create the story.',
     roles: ['Music composition, production and master', 'Sound design', 'Mastering'],
   },
   {
@@ -61,7 +61,7 @@ const HIGHLIGHTS: Highlight[] = [
     poster: '/images/actbyact.jpg',
     title: 'Actor Played By Actor',
     description:
-      'Contracted indie film about an actor stuck in his own movie. Oversaw sound from beginning to end',
+      'Contracted indie film about an actor stuck in his own movie. Oversaw sound from beginning to end.',
     roles: ['On-Set recording, ADR recording', 'Sound Design, Dialogue Edit, Audio Edit', '5.1 Mix, Stems delivery'],
   },
 ];
