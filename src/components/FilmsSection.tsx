@@ -13,7 +13,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 
 interface Film {
-  poster: string;
+  poster?: string;
   title: string;
   year: string;
   role: string | string[];
@@ -33,8 +33,8 @@ const FILMS: Film[] = [
     year: '2025',
     role: 'Sound Design, Mixing, Music',
     description: 'My VFS Graduation project. From script writing, casting, and video editing to source foley recording, sound design and mixing in 5.1',
-    stereoUrl: 'https://www.youtube.com/watch?v=YOUTUBE_ID_STEREO',
-    surroundUrl: 'https://www.youtube.com/watch?v=YOUTUBE_ID_51',
+    //stereoUrl: 'https://youtu.be/DSTJhMasiXo',
+    surroundUrl: 'https://youtu.be/RRIReyOBzF0',
   },
   {
     poster: '/images/noexitposter.JPG',
@@ -45,13 +45,12 @@ const FILMS: Film[] = [
     youtubeUrl: 'https://youtu.be/7_FJnu6F9Co',
   },
   {
-    poster: '/images/films/film-three.jpg',
+    poster: '',
     title: 'Actor Played By Actor',
     year: '2025',
     role: 'Lead Sound',
     description: 'Indie project. credits include on set sound recording, ADR, dialogue edit, sound design and final mix and delivery',
-    stereoUrl: 'https://www.youtube.com/watch?v=YOUTUBE_ID_STEREO',
-    surroundUrl: 'https://www.youtube.com/watch?v=YOUTUBE_ID_51',
+    youtubeUrl: 'https://youtu.be/Rk5i6T1j8IE',
   },
   {
     poster: '/images/teotwposter.png',
@@ -59,22 +58,30 @@ const FILMS: Film[] = [
     year: '2026',
     role: 'Foley, SFX Design, Composer',
     description: '',
-    youtubeUrl: 'https://youtu.be/7_FJnu6F9Co',
+    youtubeUrl: 'https://youtu.be/NRQoGJ4QvJg',
   },
   {
-    poster: '/images/films/film-five.jpg',
+    poster: '',
     title: "Luna's Friends",
     year: '2026',
     role: 'Dialogue Edit',
     description: '30 minute indie film about a new girl meeting her boyfriends friends.',
   },
   {
-    poster: '/images/films/film-six.jpg',
-    title: 'Film Title Six',
-    year: '2021',
-    role: 'Sound Designer',
-    description: 'What made this project stand out and why you are proud of the work.',
-    youtubeUrl: 'https://www.youtube.com/watch?v=YOUTUBE_ID',
+    poster: '',
+    title: 'Inner Mushroom',
+    year: '2025',
+    role: 'Dialogue Rerecording Mixer',
+    description: 'VFS film collab, 11 minutes, mixed for 5.1',
+
+  },
+  {
+    poster: '',
+    title: 'The Auction',
+    year: '2025',
+    role: 'Sound Design, Dialogue Edit, SFX Edit',
+    description: 'VFS film collab, 9 minutes, mixed for 5.1',
+
   },
 ];
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -97,14 +104,19 @@ function FilmCard({ film, index }: { film: Film; index: number }) {
     >
       {/* Poster */}
       <div className="relative overflow-hidden bg-white/5" style={{ aspectRatio: '2/3' }}>
-        <div className="absolute inset-0 bg-neutral-900" />
+        <div className="absolute inset-0 bg-neutral-900 flex items-center justify-center">
+          {!film.poster && (
+            <span className="text-white/20 text-xs font-mono tracking-widest uppercase">Poster Coming Soon</span>
+          )}
+        </div>
 
-        <img
-          src={film.poster}
-          alt={film.title}
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.06]"
-          onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
-        />
+        {film.poster && (
+          <img
+            src={film.poster}
+            alt={film.title}
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.06]"
+          />
+        )}
 
         <div
           className="absolute inset-0 transition-opacity duration-400"
