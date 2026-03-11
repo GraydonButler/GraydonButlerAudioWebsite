@@ -45,7 +45,7 @@ const FILMS: Film[] = [
     youtubeUrl: 'https://youtu.be/7_FJnu6F9Co',
   },
   {
-    poster: '',
+    poster: '/images/actbyactposter.jpg',
     title: 'Actor Played By Actor',
     year: '2025',
     role: 'Lead Sound',
