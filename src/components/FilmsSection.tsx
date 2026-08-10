@@ -54,14 +54,6 @@ const FILMS: Film[] = [
   },
   {
     poster: '',
-    title: 'Pork U',
-    year: '2026 in prod.',
-    role: 'Dialogue Re-Recording Mixer',
-    description: 'Upcoming episodic series',
-    youtubeUrl: '',
-  },
-  {
-    poster: '',
     title: 'Meta Montage',
     year: '2026 Apr',
     role: 'Lead Audio, Sound Design, Dialogue Re-Recording Mixer',
