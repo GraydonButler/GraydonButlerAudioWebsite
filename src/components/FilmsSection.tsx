@@ -48,9 +48,9 @@ const FILMS: Film[] = [
     poster: '',
     title: 'Patang',
     year: '2026 May',
-    role: 'Dialogure Re-Recording Mixer',
+    role: 'Dialogue Re-Recording Mixer',
     description: '24 minute film exploring modern religion. Delivered for festivals.',
-    youtubeUrl: '',
+    youtubeUrl: 'https://youtu.be/O2ANs9WqrPI',
   },
   {
     poster: '',
@@ -58,7 +58,7 @@ const FILMS: Film[] = [
     year: '2026 Apr',
     role: 'Lead Audio, Sound Design, Dialogue Re-Recording Mixer',
     description: 'Directed by Yuri Kakuya, an 18 minute experimental short film delivered for festivals',
-    youtubeUrl: '',
+    youtubeUrl: 'https://youtu.be/l4oeJxP1WFQ',
   },
   {
     poster: '/images/noexitposter.JPG',
@@ -67,6 +67,21 @@ const FILMS: Film[] = [
     role: 'Sound Design, Audio Editing',
     description: 'Directed and produced by vancouver film club, contracted by Zerux',
     youtubeUrl: 'https://youtu.be/7_FJnu6F9Co',
+  },
+  {
+    poster: '',
+    title: 'Moving Day',
+    year: '2026 in prod.',
+    role: 'Sound Designer, Technical Sound Designer',
+    description: 'An arcade style puzzle game from Mitchell Winter. Made with Godot, Audio in Wwise',
+    youtubeUrl: '',
+  }, {
+    poster: '',
+    title: 'Fantastic Folktales',
+    year: '2026 in prod.',
+    role: 'Background Editor',
+    description: 'Feature length documentary about brazilian folktales',
+    youtubeUrl: '',
   },
   {
     poster: '/images/actbyactposter.jpg',
@@ -86,16 +101,16 @@ const FILMS: Film[] = [
   },
   {
     poster: '',
-    title: "Upcoming: Luna's Friends",
+    title: "Luna's Friends",
     year: '2026 Jan',
-    role: 'Dialogue Edit',
+    role: 'Dialogue Editor',
     description: '30 minute indie film about a new girl meeting her boyfriends friends.',
   },
   {
     poster: '',
     title: "Paint",
     year: '2025 Oct',
-    role: 'SFX Edit, Foley',
+    role: 'SFX Editor, Foley Recordist',
     description: "A couple at the end of their relationship.",
   },
   {

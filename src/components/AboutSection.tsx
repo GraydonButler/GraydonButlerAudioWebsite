@@ -53,6 +53,7 @@ export default function AboutSection() {
               </motion.div>
             ))}
           </div>
+
         </motion.div>
 
         {/* Right side - Image grid */}

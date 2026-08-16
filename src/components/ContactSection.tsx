@@ -16,6 +16,16 @@ export default function ContactSection() {
       value: 'graydon-butler',
       href: 'https://www.linkedin.com/in/graydon-butler-8ab33120b/',
     },
+    {
+      label: 'Instagram',
+      value: '@graydonbaudio',
+      href: 'https://www.instagram.com/graydonbaudio',
+    },
+    {
+      label: 'Youtube',
+      value: 'Graydon Butler Audio',
+      href: 'https://www.youtube.com/@GraydonButlerAudio',
+    },
   ];
 
   return (
