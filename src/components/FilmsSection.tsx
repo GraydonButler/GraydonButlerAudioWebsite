@@ -28,45 +28,12 @@ interface Film {
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 const FILMS: Film[] = [
   {
-    poster: '/images/scavengersposter.jpg',
-    title: 'Scavengers',
-    year: '2025 Oct',
-    role: 'Sound Design, Mixing, Music',
-    description: 'My VFS Graduation project. From script writing, casting, and video editing to source foley recording, sound design and mixing in 5.1',
-    //stereoUrl: 'https://youtu.be/DSTJhMasiXo',
-    surroundUrl: 'https://youtu.be/RRIReyOBzF0',
-  },
-  {
-    poster: '',
+    poster: '/images/we_the_eagles_poster.jpg',
     title: 'We The Eagles',
     year: '2026 in prod.',
-    role: 'SFX Editor, Dialogue Re-Recording Mixer',
-    description: 'Upcoming episodic documentary',
+    role: 'SFX Editor, Dialogue and Music Re-Recording Mixer',
+    description: "Upcoming 3 part episodic documentary following Vancouver FC's run in the concacaf cup",
     youtubeUrl: '',
-  },
-  {
-    poster: '',
-    title: 'Patang',
-    year: '2026 May',
-    role: 'Dialogue Re-Recording Mixer',
-    description: '24 minute film exploring modern religion. Delivered for festivals.',
-    youtubeUrl: 'https://youtu.be/O2ANs9WqrPI',
-  },
-  {
-    poster: '',
-    title: 'Meta Montage',
-    year: '2026 Apr',
-    role: 'Lead Audio, Sound Design, Dialogue Re-Recording Mixer',
-    description: 'Directed by Yuri Kakuya, an 18 minute experimental short film delivered for festivals',
-    youtubeUrl: 'https://youtu.be/l4oeJxP1WFQ',
-  },
-  {
-    poster: '/images/noexitposter.JPG',
-    title: 'No Exit',
-    year: '2026 Dec',
-    role: 'Sound Design, Audio Editing',
-    description: 'Directed and produced by vancouver film club, contracted by Zerux',
-    youtubeUrl: 'https://youtu.be/7_FJnu6F9Co',
   },
   {
     poster: '',
@@ -75,8 +42,9 @@ const FILMS: Film[] = [
     role: 'Sound Designer, Technical Sound Designer',
     description: 'An arcade style puzzle game from Mitchell Winter. Made with Godot, Audio in Wwise',
     youtubeUrl: '',
-  }, {
-    poster: '',
+  },
+  {
+    poster: '/images/fantastic_folktales_poster.jpg',
     title: 'Fantastic Folktales',
     year: '2026 in prod.',
     role: 'Background Editor',
@@ -84,12 +52,29 @@ const FILMS: Film[] = [
     youtubeUrl: '',
   },
   {
-    poster: '/images/actbyactposter.jpg',
-    title: 'Actor Played By Actor',
-    year: '2025 Nov',
+    poster: '/images/climber_poster.jpg',
+    title: 'Thank Euphoria Bag Drop Short Film',
+    year: 'Upcoming 2026 Aug',
     role: 'Lead Sound',
-    description: 'Indie project. credits include on set sound recording, ADR, dialogue edit, sound design and final mix and delivery',
-    youtubeUrl: 'https://youtu.be/Rk5i6T1j8IE',
+    description: "Full sound design, edit and mix for a short film to be released alongside a clothing company's product drop",
+    youtubeUrl: '',
+  },
+
+  {
+    poster: '/images/patang_poster.jpg',
+    title: 'Patang',
+    year: '2026 May',
+    role: 'Dialogue Re-Recording Mixer',
+    description: '24 minute film exploring modern religion. Delivered for festivals.',
+    youtubeUrl: 'https://youtu.be/O2ANs9WqrPI',
+  },
+  {
+    poster: '/images/theater_poster.jpg',
+    title: 'Meta Montage',
+    year: '2026 Apr',
+    role: 'Lead Audio, Sound Design, Dialogue Re-Recording Mixer',
+    description: 'Directed by Yuri Kakuya, an 18 minute experimental short film delivered for festivals',
+    youtubeUrl: 'https://youtu.be/l4oeJxP1WFQ',
   },
   {
     poster: '/images/teotwposter.png',
@@ -100,14 +85,38 @@ const FILMS: Film[] = [
     youtubeUrl: 'https://youtu.be/NRQoGJ4QvJg',
   },
   {
-    poster: '',
+    poster: '/images/LunasFriendsPoster_cropped.png',
     title: "Luna's Friends",
     year: '2026 Jan',
     role: 'Dialogue Editor',
     description: '30 minute indie film about a new girl meeting her boyfriends friends.',
   },
   {
-    poster: '',
+    poster: '/images/noexitposter.JPG',
+    title: 'No Exit',
+    year: '2025 Dec',
+    role: 'Sound Design, Audio Editing',
+    description: 'Directed and produced by vancouver film club, contracted by Zerux',
+    youtubeUrl: 'https://youtu.be/7_FJnu6F9Co',
+  },
+  {
+    poster: '/images/actbyactposter.jpg',
+    title: 'Actor Played By Actor',
+    year: '2025 Nov',
+    role: 'Lead Sound',
+    description: 'Indie project. credits include on set sound recording, ADR, dialogue edit, sound design and final mix and delivery',
+    youtubeUrl: 'https://youtu.be/Rk5i6T1j8IE',
+  },
+  {
+    poster: '/images/scavengersposter.jpg',
+    title: 'Scavengers',
+    year: '2025 Oct',
+    role: 'Sound Design, Mixing, Music',
+    description: 'My VFS Graduation project. From script writing, casting, and video editing to source foley recording, sound design and mixing in 5.1',
+    surroundUrl: 'https://youtu.be/RRIReyOBzF0',
+  },
+  {
+    poster: '/images/Paint_Poster.png',
     title: "Paint",
     year: '2025 Oct',
     role: 'SFX Editor, Foley Recordist',
@@ -119,7 +128,6 @@ const FILMS: Film[] = [
     year: '2025 Aug',
     role: 'Dialogue Rerecording Mixer',
     description: 'VFS film collab, 11 minutes, mixed for 5.1',
-
   },
   {
     poster: '',
@@ -127,7 +135,6 @@ const FILMS: Film[] = [
     year: '2025 Aug',
     role: 'Sound Design, Dialogue Edit, SFX Edit',
     description: 'VFS film collab, 9 minutes, mixed for 5.1',
-
   },
 ];
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
