@@ -36,7 +36,7 @@ const FILMS: Film[] = [
     youtubeUrl: '',
   },
   {
-    poster: '',
+    poster: '/images/movingday_WIPposter.png',
     title: 'Moving Day',
     year: '2026 in prod.',
     role: 'Sound Designer, Technical Sound Designer',
